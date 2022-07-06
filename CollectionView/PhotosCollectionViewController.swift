@@ -10,24 +10,19 @@ import UIKit
 
 
 class PhotosCollectionViewController: UICollectionViewController {
+    
+    let itemsPerRow: CGFloat = 2
+    let sectionInserts = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+//        let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
+//        layout.itemSize = CGSize(width: 70, height: 70)
 
 
     }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
-    }
-    */
-
-    // MARK: UICollectionViewDataSource
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
@@ -53,25 +48,25 @@ class PhotosCollectionViewController: UICollectionViewController {
 }
 
 extension PhotosCollectionViewController: UICollectionViewDelegateFlowLayout{
-    
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let itemsPerRow: CGFloat = 2
-        let paddingWidth = 20 * (itemsPerRow + 1)
-        let avalibleWidth = collectionView.frame.width  - paddingWidth
+        
+        let paddingWidth = sectionInserts.left * (itemsPerRow + 1)
+        let avalibleWidth = collectionView.frame.width  - paddingWidth // mediaQuery
         let widthPerItem = avalibleWidth / itemsPerRow
         return CGSize(width: widthPerItem, height: widthPerItem)
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
+        return sectionInserts
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 20
+        return sectionInserts.left
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 20
+        return sectionInserts.left
     }
-    
+
 }
