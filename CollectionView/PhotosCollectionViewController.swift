@@ -9,7 +9,10 @@ import UIKit
 
 
 
+
 class PhotosCollectionViewController: UICollectionViewController {
+    
+    let photos = ["dog1","dog2","dog3","dog4","dog5","dog6","dog7","dog8","dog9","dog10","dog11","dog12","dog13","dog14","dog15"]
     
     let itemsPerRow: CGFloat = 2
     let sectionInserts = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
@@ -19,7 +22,7 @@ class PhotosCollectionViewController: UICollectionViewController {
         
 //        let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
 //        layout.itemSize = CGSize(width: 70, height: 70)
-
+            //you can work with layout here also
 
     }
 
@@ -32,14 +35,17 @@ class PhotosCollectionViewController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return 15
+        return photos.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "photoCell", for: indexPath)
-    
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "photoCell", for: indexPath) as! PhotoCell
         
-        cell.backgroundColor = .black
+        let imageName = photos[indexPath.item]
+        let image = UIImage(named: imageName)
+    
+        cell.imageView.image = image
+        
         
         return cell
     }
